@@ -26,6 +26,16 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    // Mise à jour de la quantité en stock
+    public void updateQuantity(Integer id, int quantity){
+        Product p = productRepository.findById(id).orElse(null);
+        if(p != null){
+            p.setQuantity(quantity);
+            productRepository.save(p);
+        } else {
+            System.out.println("Ce produit n'existe pas");
+        }
+    }
 
 
 
