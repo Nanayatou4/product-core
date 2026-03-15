@@ -21,6 +21,33 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    //Consultation de tous les produits
+    public List<Product> listProducts(){
+        return productRepository.findAll();
+    }
+
+    // Mise à jour de la quantité en stock
+    public void updateQuantity(Integer id, int quantity){
+        Product p = productRepository.findById(id).orElse(null);
+        if(p != null){
+            p.setQuantity(quantity);
+            productRepository.save(p);
+        } else {
+            System.out.println("Ce produit n'existe pas");
+        }
+    }
+
+    // Calcul du nombre de produits ayant une quantité faible (ex : quantité ≤ 5)
+    public int countLowStockProducts(){
+        List<Product> products = productRepository.findAll();
+        int nb = 0;
+        for (Product product : products){
+            if(product.getQuantity() <= 5){
+                nb++;
+            }
+        }
+        return nb;
+    }
 
 
 
