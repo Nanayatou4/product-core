@@ -37,6 +37,18 @@ public class ProductService {
         }
     }
 
+    // Calcul du nombre de produits ayant une quantité faible (ex : quantité ≤ 5)
+    public int countLowStockProducts(){
+        List<Product> products = productRepository.findAll();
+        int nb = 0;
+        for (Product product : products){
+            if(product.getQuantity() <= 5){
+                nb++;
+            }
+        }
+        return nb;
+    }
+
 
 
 
