@@ -21,6 +21,11 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    //Consultation de tous les produits
+    public List<Product> listProducts(){
+        return productRepository.findAll();
+    }
+
 
 
 
